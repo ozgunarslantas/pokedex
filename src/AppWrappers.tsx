@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "react-query"
+import { BrowserRouter } from "react-router-dom"
 
 const queryClient = new QueryClient()
 
@@ -7,7 +8,9 @@ type AppWrappersProps = {
 }
 
 const AppWrappers = ({ children }: AppWrappersProps) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  <BrowserRouter>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  </BrowserRouter>
 )
 
 export default AppWrappers
