@@ -19,15 +19,19 @@ const NavLink = ({ children, to }: { children: string; to: string }) => {
 
 function App() {
   return (
-    <div className="w-screen h-screen p-2">
-      <div className="flex justify-center gap-2">
+    <div className="flex flex-col w-screen h-screen p-2 overflow-hidden">
+      <div className="flex justify-center gap-2 py-2">
         <NavLink to="/">Pokedex</NavLink>
         <NavLink to="/infinite">Infinite Pokedex</NavLink>
       </div>
-      <Routes>
-        <Route path="*" element={<Pokedex />} />
-        <Route path="/infinite" element={<InfinitePokedex />} />
-      </Routes>
+      <div className="flex overflow-hidden">
+        <div className="flex flex-col grow">
+          <Routes>
+            <Route path="*" element={<Pokedex />} />
+            <Route path="/infinite" element={<InfinitePokedex />} />
+          </Routes>
+        </div>
+      </div>
     </div>
   )
 }

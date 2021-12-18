@@ -9,7 +9,7 @@ const Pokedex = () => {
   const pokemonList = usePokemonList(limit, page)
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col overflow-auto">
       <h1 className="text-3xl font-bold underline">Pokedex</h1>
       <div className="flex justify-center select-none mb-4">
         <span
