@@ -2,7 +2,7 @@ import { usePokemonData } from "../../api"
 import type { Pokemon as PokemonT } from "../../types"
 
 const Pokemon = ({ pokemon }: { pokemon: PokemonT }) => {
-  const { data, isSuccess, isLoading } = usePokemonData(pokemon)
+  const { data, isSuccess } = usePokemonData(pokemon)
 
   return (
     <div className="w-36 h-36 shrink-0 flex flex-col items-center select-none rounded shadow-xl hover:shadow-sm transition-shadow duration-200">
