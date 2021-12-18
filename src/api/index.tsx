@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useQuery } from "react-query"
+import { useInfiniteQuery, useQuery } from "react-query"
 import { Pokemon, PokemonDataResponse, PokemonListResponse } from "../types"
 
 const usePokemonList = (limit = 10, page = 1, enabled = true) =>
@@ -23,4 +23,16 @@ const usePokemonData = (pokemon: Pokemon) =>
     { cacheTime: Infinity, staleTime: Infinity },
   )
 
-export { usePokemonData, usePokemonList }
+const useInfinitePokemonList = () =>
+  useInfiniteQuery<PokemonListResponse>(
+    ["infinite-pokemons"],
+    ({ pageParam = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=25" }) =>
+      axios.get(pageParam).then(({ data }) => data),
+    {
+      getNextPageParam: current => current.next,
+      cacheTime: Infinity,
+      staleTime: Infinity,
+    },
+  )
+
+export { usePokemonData, usePokemonList, useInfinitePokemonList }
