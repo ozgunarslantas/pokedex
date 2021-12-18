@@ -12,6 +12,7 @@ const Pokemon = ({ pokemon }: { pokemon: PokemonT }) => {
           <img
             alt={pokemon.name + " image"}
             src={data?.sprites.front_default}
+            className="max-w-24 max-h-24"
           />
         </div>
       )}
