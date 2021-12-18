@@ -3,6 +3,8 @@ export type Pokemon = {
   url: string
 }
 
+export type PokemonDataResponse = { sprites: { front_default: string } }
+
 export type PokemonListResponse = {
   count: number
   next: null | string

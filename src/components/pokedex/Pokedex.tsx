@@ -3,7 +3,7 @@ import { usePokemonList } from "../../api"
 import { Pokemon } from "../pokemon"
 
 const Pokedex = () => {
-  const [limit] = useState(20)
+  const [limit] = useState(25)
   const [page, setPage] = useState(1)
 
   const pokemonList = usePokemonList(limit, page)
@@ -11,7 +11,7 @@ const Pokedex = () => {
   return (
     <div className="flex flex-col">
       <h1 className="text-3xl font-bold underline">Pokedex</h1>
-      <div className="flex justify-center select-none">
+      <div className="flex justify-center select-none mb-4">
         <span
           children="<-"
           onClick={() => page > 1 && setPage(p => p - 1)}
@@ -26,7 +26,7 @@ const Pokedex = () => {
           className="cursor-pointer"
         />
       </div>
-      <div className="flex flex-col bg-red-400">
+      <div className="flex flex-wrap gap-4 p-2">
         {pokemonList.data?.results.map(pokemon => (
           <Pokemon key={pokemon.name} pokemon={pokemon} />
         ))}

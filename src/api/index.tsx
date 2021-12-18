@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useQuery } from "react-query"
-import { PokemonListResponse } from "../types"
+import { Pokemon, PokemonDataResponse, PokemonListResponse } from "../types"
 
 const usePokemonList = (limit = 10, page = 1, enabled = true) =>
   useQuery<PokemonListResponse>(
@@ -16,11 +16,11 @@ const usePokemonList = (limit = 10, page = 1, enabled = true) =>
     { cacheTime: Infinity, staleTime: Infinity, enabled },
   )
 
-const usePokemonData = (pokemon: string | undefined) =>
-  useQuery(
-    ["pokemon-data", pokemon],
-    () => axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`),
-    { enabled: !!pokemon },
+const usePokemonData = (pokemon: Pokemon) =>
+  useQuery<PokemonDataResponse>(
+    ["pokemon-data", pokemon.name],
+    () => axios.get(pokemon.url).then(({ data }) => data),
+    { cacheTime: Infinity, staleTime: Infinity },
   )
 
 export { usePokemonData, usePokemonList }
