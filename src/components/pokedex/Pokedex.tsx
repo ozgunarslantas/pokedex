@@ -11,19 +11,31 @@ const Pokedex = () => {
   return (
     <div className="flex flex-col overflow-auto">
       <h1 className="text-3xl font-bold underline">Pokedex</h1>
-      <div className="flex justify-center select-none mb-4">
+      <div className="flex justify-center select-none mb-4 gap-x-2">
+        <span
+          children="|<--"
+          onClick={() => setPage(1)}
+          className="cursor-pointer border rounded-sm hover:bg-gray-100"
+        />
         <span
           children="<-"
           onClick={() => page > 1 && setPage(p => p - 1)}
-          className="cursor-pointer"
+          className="cursor-pointer border rounded-sm hover:bg-gray-100"
         />
-        <span className="mx-2">Page {page}</span>
+        <span className="mx-2 w-20 text-center">Page {page}</span>
         <span
           children="->"
           onClick={() =>
             page < (pokemonList.data?.count || 0) / limit && setPage(p => p + 1)
           }
-          className="cursor-pointer"
+          className="cursor-pointer border rounded-sm hover:bg-gray-100"
+        />
+        <span
+          children="-->|"
+          onClick={() =>
+            setPage(Math.ceil((pokemonList.data?.count || 0) / limit))
+          }
+          className="cursor-pointer border rounded-sm hover:bg-gray-100"
         />
       </div>
       <div className="flex flex-wrap gap-4 p-2">
